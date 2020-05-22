@@ -63,9 +63,6 @@ class Fresnet:
 
         return frenet_coordinates
 
-
-
-
 dictpat = r'\{((?:\s*\w+\s*:\s*\D+\w+.\d+\s*)+)\}' 
 itempat = r'(\s*(\w+)\s*:\s*(\D+\w+.\d+)\s*)'      
 
@@ -81,8 +78,9 @@ fr = Fresnet()
 spline_ob = fr.reference_spline(df)
 fr.calculate_boundaries(spline_ob.x[0],spline_ob.x[spline_ob.x.size-1])
 
-x = os.environ['X']
-y = os.environ['Y']
+if __name__ == '__main__':
+    x = os.environ['X']
+    y = os.environ['Y']
 
-frenet = fr.cartesian2frenet(float(x),float(y))
-print(frenet)
+    frenet = fr.cartesian2frenet(float(x),float(y))
+    print(frenet)
