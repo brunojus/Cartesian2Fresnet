@@ -16,13 +16,13 @@ class Fresnet:
         plt.scatter(df['x'],df['y'])
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.show()
+        plt.savefig("initial_data.png")
     
     def plot_interpolation(self,df,frenet):
         xnew = np.linspace(0, 41, num=41, endpoint=True)
         plt.plot(df['x'], df['y'], 'o', xnew, spline_ob(xnew), '--', frenet['d'], frenet['s'],'o')
         plt.legend(['data', 'interpolation','fresnet_point'], loc='best')
-        plt.show()
+        plt.savefig("fresnet.png")
     
     def calculate_euclidean_distance(self,x1, x2, y1, y2):
         return np.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
@@ -40,6 +40,8 @@ class Fresnet:
     def calculate_boundaries(self,spline_start_x_value, spline_end_x_value):
         self.start_x_ = spline_start_x_value
         self.end_x_ = spline_end_x_value
+
+        return self.start_x_,self.end_x_
         
     def cartesian2frenet(self,coordinate_x, coordinate_y, precision= 0.001):
         current_s = 0
@@ -79,8 +81,8 @@ spline_ob = fr.reference_spline(df)
 fr.calculate_boundaries(spline_ob.x[0],spline_ob.x[spline_ob.x.size-1])
 
 if __name__ == '__main__':
-    x = os.environ['X']
-    y = os.environ['Y']
+    x = input('Insert a value to x:')
+    y = input('Insert a value to y:')
 
     frenet = fr.cartesian2frenet(float(x),float(y))
     print(frenet)

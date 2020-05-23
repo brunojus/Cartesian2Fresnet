@@ -13,3 +13,19 @@ Sample input points are given as a protobuf message in text format, which can be
 An illustration can be found in the image below. The red line is the reference line.
 
 ![](images/illustration2.png)
+
+### How to use
+
+#### Build the code
+``` docker build -t fresnet . -f Dockerfile  ```
+
+### Run the code
+```docker run -it fresnet ```
+
+#### Build the tests
+``` docker build -t tests . -f test.Dockerfile  ```
+
+#### Run the tests
+```docker run -it tests ```
+
+For the visualization of the charts for the initial spline and the ploted point, it is necessary to open the file ``` fresnet.html  ``` in your browser.

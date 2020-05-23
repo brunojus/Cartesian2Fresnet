@@ -25,14 +25,29 @@ class TestFresnet(unittest.TestCase):
         expected_y_value = 0.119615256786
         self.assertEqual(spline.y[0],expected_y_value)
 
+    def test_cartesian2frenet(self):
 
+        points = Cartesian2Fresnet.fr.cartesian2frenet(20.0,2)
         
-    def test_current_s(self):
-        """
-        Test the current point
-        """
-        result = Cartesian2Fresnet.fr.current_s
-        self.assertEqual(result, 0.0)
+        self.assertGreaterEqual(points['d'],-23.0)
+        self.assertGreaterEqual(points['s'],41.0)
+
+    def test_calculate_boundaries(self):
+
+        boudaries = Cartesian2Fresnet.fr.calculate_boundaries(0.0,41.9993400574)
+        self.assertEqual(boudaries[0],0.0)
+        self.assertEqual(boudaries[1],41.9993400574)
+    
+    def test_calculate_euclidean_distance(self):
+        distance = Cartesian2Fresnet.fr.calculate_euclidean_distance(0.0,1.0,2.0,0.0)
+        self.assertGreaterEqual(distance,2)
+
+    def test_calculate_sign(self):
+        sign = Cartesian2Fresnet.fr.calculate_sign(41.999999999992816, 20.0, -0.10119433914335003, 2.0)
+        self.assertEqual(sign,-1.0)
+
+
+
 
 if __name__ == '__main__':
 
