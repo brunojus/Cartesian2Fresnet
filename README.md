@@ -28,4 +28,4 @@ An illustration can be found in the image below. The red line is the reference l
 #### Run the tests
 ```docker run -it tests ```
 
-For the visualization of the charts for the initial spline and the ploted point, it is necessary to open the file ``` fresnet.html  ``` in your browser.
+For the visualization of the charts for the initial spline and the plotted point, it is necessary to open the file ``` fresnet.html  ``` in your browser.

@@ -11,19 +11,7 @@ class Fresnet:
     start_x_ = 0.0
     end_x_ = 0.0
     current_s = 0.0
-    
-    def plot_initial_data(self,df):
-        plt.scatter(df['x'],df['y'])
-        plt.xlabel('x')
-        plt.ylabel('y')
-        plt.savefig("initial_data.png")
-    
-    def plot_interpolation(self,df,frenet):
-        xnew = np.linspace(0, 41, num=41, endpoint=True)
-        plt.plot(df['x'], df['y'], 'o', xnew, spline_ob(xnew), '--', frenet['d'], frenet['s'],'o')
-        plt.legend(['data', 'interpolation','fresnet_point'], loc='best')
-        plt.savefig("fresnet.png")
-    
+
     def calculate_euclidean_distance(self,x1, x2, y1, y2):
         return np.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 
@@ -49,7 +37,7 @@ class Fresnet:
             current_x = self.start_x_
         else:
             current_x = self.end_x_
-        while (current_x < (self.end_x_ - self.start_x_) > 0.0 if self.end_x_ else self.start_x_):
+        while (current_x < (self.end_x_ - self.start_x_) > 0.0):
             distance = self.calculate_euclidean_distance(current_x, coordinate_x, spline_ob(current_x), coordinate_y)
             frenet_coordinates = {'d':10000,'s':10000}
             if (distance <= frenet_coordinates['d']):
@@ -65,6 +53,9 @@ class Fresnet:
 
         return frenet_coordinates
 
+
+
+"""This part is necessary to parser the dataset file"""
 dictpat = r'\{((?:\s*\w+\s*:\s*\D+\w+.\d+\s*)+)\}' 
 itempat = r'(\s*(\w+)\s*:\s*(\D+\w+.\d+)\s*)'      
 
